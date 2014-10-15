@@ -4,7 +4,7 @@
   <title><![CDATA[Acrogenesis Blog]]></title>
   <link href="http://acrogenesis.com/atom.xml" rel="self"/>
   <link href="http://acrogenesis.com/"/>
-  <updated>2014-10-15T17:44:28-05:00</updated>
+  <updated>2014-10-15T17:50:03-05:00</updated>
   <id>http://acrogenesis.com/</id>
   <author>
     <name><![CDATA[Adrián Rangel]]></name>
@@ -187,7 +187,7 @@ to further customize your blog.</p>
 
 <p>where 00:00&hellip; is the MAC address to spoof.</p>
 
-<p>Now just turn off and on your WiFi try and access <a href="http://bluehats.mx/blog">http://bluehats.mx/blog</a> if you face a Hotspot login try another MAC address from the list, if not you are already connected to the internet!</p>
+<p>Now just turn off and on your WiFi try and access <a href="http://acrogenesis.com">http://acrogenesis.com</a> if you face a Hotspot login try another MAC address from the list, if not you are already connected to the internet!</p>
 
 <p>If running arp -na didn&rsquo;t give you results or the MAC addresses you tried didn&rsquo;t give you internet connectivity you will have to ping all devices with nmap here is how to do it:</p>
 

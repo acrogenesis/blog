@@ -40,7 +40,7 @@ sudo ifconfig en0 ether 00:00:00:00:00:00
 
 where 00:00... is the MAC address to spoof.
 
-Now just turn off and on your WiFi try and access [http://bluehats.mx/blog](http://bluehats.mx/blog) if you face a Hotspot login try another MAC address from the list, if not you are already connected to the internet!
+Now just turn off and on your WiFi try and access [http://acrogenesis.com](http://acrogenesis.com) if you face a Hotspot login try another MAC address from the list, if not you are already connected to the internet!
 
 If running arp -na didn't give you results or the MAC addresses you tried didn't give you internet connectivity you will have to ping all devices with nmap here is how to do it:
 
