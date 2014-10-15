@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Acrogenesis Blog]]></title>
-  <link href="http://acrogenseis.com/atom.xml" rel="self"/>
-  <link href="http://acrogenseis.com/"/>
-  <updated>2014-10-15T17:34:29-05:00</updated>
-  <id>http://acrogenseis.com/</id>
+  <link href="http://acrogenesis.com/atom.xml" rel="self"/>
+  <link href="http://acrogenesis.com/"/>
+  <updated>2014-10-15T17:35:58-05:00</updated>
+  <id>http://acrogenesis.com/</id>
   <author>
     <name><![CDATA[Adrián Rangel]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How-To Upgrade Your Wordpress Blog to an Octopress Blog]]></title>
-    <link href="http://acrogenseis.com/how-to-upgrade-your-wordpress-blog-to-an-octopress-blog/"/>
+    <link href="http://acrogenesis.com/how-to-upgrade-your-wordpress-blog-to-an-octopress-blog/"/>
     <updated>2014-02-03T12:27:44-06:00</updated>
-    <id>http://acrogenseis.com/how-to-upgrade-your-wordpress-blog-to-an-octopress-blog</id>
+    <id>http://acrogenesis.com/how-to-upgrade-your-wordpress-blog-to-an-octopress-blog</id>
     <content type="html"><![CDATA[<p>Recently I upgraded this blog from Wordpress to Octopress. I&rsquo;ll walk you
 through on the process I followed.</p>
 
@@ -29,7 +29,7 @@ can follow setup instructions at
 <a href="http://yourblog.com/wp-admin/export.php">http://yourblog.com/wp-admin/export.php</a> and select to export all your
 content.</p>
 
-<p><img class="full-width" src="http://acrogenseis.com/images/upgrade-wordpress-to-octopress/export-all-content.png" title="Export All Content" alt="Export All Content"></p>
+<p><img class="full-width" src="http://acrogenesis.com/images/upgrade-wordpress-to-octopress/export-all-content.png" title="Export All Content" alt="Export All Content"></p>
 
 <p>This will give you a <code>.xml</code> file which we will use to transfer your
 comments to disqus after transfering your posts.</p>
@@ -91,7 +91,7 @@ export the comments to Disqus.</p>
 <p>First create an account at <a href="https://disqus.com/profile/signup/">Disqus</a></p>
 
 <p>After you&rsquo;ve created your account let&rsquo;s <a href="http://disqus.com/admin/create/">Register your website at Disqus</a>
-<img class="full-width" src="http://acrogenseis.com/images/upgrade-wordpress-to-octopress/add-disqus-site.png" title="Add Disqus site" alt="Add Disqus site"></p>
+<img class="full-width" src="http://acrogenesis.com/images/upgrade-wordpress-to-octopress/add-disqus-site.png" title="Add Disqus site" alt="Add Disqus site"></p>
 
 <p>Take note of your &lsquo;shortname&rsquo; we will be using it next.</p>
 
@@ -109,7 +109,7 @@ select your newly created site.</p>
 
 <p>Click Upload and Import</p>
 
-<p><img class="full-width" src="http://acrogenseis.com/images/upgrade-wordpress-to-octopress/import-wordpress-comments.png" title="Import Disqus Comments" alt="Import Disqus Comments"></p>
+<p><img class="full-width" src="http://acrogenesis.com/images/upgrade-wordpress-to-octopress/import-wordpress-comments.png" title="Import Disqus Comments" alt="Import Disqus Comments"></p>
 
 <p>This will upload your current comments to Disqus, if your url&rsquo;s won&rsquo;t
 change you can stop here and in a few hours all your comments will be
@@ -120,7 +120,7 @@ you have to map the old url&rsquo;s with the new url&rsquo;s.</p>
 select the most appropiate method for merging threads, in my case I used
 Url Mapper.</p>
 
-<p><img class="full-width" src="http://acrogenseis.com/images/upgrade-wordpress-to-octopress/migrate-threads.png" title="Migrate threads" alt="Migrate threads"></p>
+<p><img class="full-width" src="http://acrogenesis.com/images/upgrade-wordpress-to-octopress/migrate-threads.png" title="Migrate threads" alt="Migrate threads"></p>
 
 <p>Click on the link that says <code>you can download a CSV here</code> that will
 email you a CSV file which will contain all the old url&rsquo;s, you will
@@ -156,9 +156,9 @@ to further customize your blog.</p>
   
   <entry>
     <title type="html"><![CDATA[How to Bypass Hotspot Logins on a Mac]]></title>
-    <link href="http://acrogenseis.com/how-to-bypass-hotspot-logins/"/>
+    <link href="http://acrogenesis.com/how-to-bypass-hotspot-logins/"/>
     <updated>2014-01-07T11:46:03-06:00</updated>
-    <id>http://acrogenseis.com/how-to-bypass-hotspot-logins</id>
+    <id>http://acrogenesis.com/how-to-bypass-hotspot-logins</id>
     <content type="html"><![CDATA[<p>If you are reading this you have probably faced a Hotspot at an airport, hotel, cafe etc. where the WiFi access was open but you faced a Hotspot login portal asking you to agree terms &amp; conditions or pay a fee.</p>
 
 <p>Luckily there&rsquo;s an easy way around this which is based on how the portal allows some devices in and the other not.</p>
@@ -256,9 +256,9 @@ to further customize your blog.</p>
   
   <entry>
     <title type="html"><![CDATA[My Top Aliases and Functions for Terminal]]></title>
-    <link href="http://acrogenseis.com/top-aliases-and-functions-for-terminal/"/>
+    <link href="http://acrogenesis.com/top-aliases-and-functions-for-terminal/"/>
     <updated>2013-11-29T10:27:53-06:00</updated>
-    <id>http://acrogenseis.com/top-aliases-and-functions-for-terminal</id>
+    <id>http://acrogenesis.com/top-aliases-and-functions-for-terminal</id>
     <content type="html"><![CDATA[<p>This are my top aliases for terminal, I&rsquo;ve order them on how frequently I use them and separated by topics.</p>
 
 <p>To add this aliases and functions to your terminal simply run </p>
@@ -377,9 +377,9 @@ to further customize your blog.</p>
   
   <entry>
     <title type="html"><![CDATA[How to Bypass API Restrictions]]></title>
-    <link href="http://acrogenseis.com/how-to-bypass-api-restrictions/"/>
+    <link href="http://acrogenesis.com/how-to-bypass-api-restrictions/"/>
     <updated>2013-09-27T22:03:01-05:00</updated>
-    <id>http://acrogenseis.com/how-to-bypass-api-restrictions</id>
+    <id>http://acrogenesis.com/how-to-bypass-api-restrictions</id>
     <content type="html"><![CDATA[<p>Don&rsquo;t you hate it when a free API has limits on the number of request you can do? I was hitting the wunderground.com and openexchangerates.org API&rsquo;s limits often. The problem was when we had a traffic spike. We didn&rsquo;t want to pay for premium the same way we don&rsquo;t want to pay extra bandwidth in case of a spontaneous traffic surge. So we came with the idea to cache it. Here&rsquo;s an easy way to ‘cache’ the API&rsquo;s JSON response.</p>
 
 <p>First of all let’s create a shell script (.sh) (I’ll be doing the example for the wunderground API) and add some code (I use VIM, the vim command will create the file)</p>

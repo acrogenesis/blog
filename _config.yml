@@ -2,7 +2,7 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://acrogenseis.com
+url: http://acrogenesis.com
 title: Acrogenesis Blog
 subtitle: Bleeding edge developer.
 author: Adrián Rangel
@@ -93,7 +93,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name: acrogenseis
+disqus_short_name: acrogenesis
 disqus_show_comment_count: false
 
 # Google Analytics

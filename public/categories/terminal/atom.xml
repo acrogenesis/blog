@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Terminal | Acrogenesis Blog]]></title>
-  <link href="http://acrogenseis.com/categories/terminal/atom.xml" rel="self"/>
-  <link href="http://acrogenseis.com/"/>
-  <updated>2014-10-15T17:34:29-05:00</updated>
-  <id>http://acrogenseis.com/</id>
+  <link href="http://acrogenesis.com/categories/terminal/atom.xml" rel="self"/>
+  <link href="http://acrogenesis.com/"/>
+  <updated>2014-10-15T17:35:58-05:00</updated>
+  <id>http://acrogenesis.com/</id>
   <author>
     <name><![CDATA[Adrián Rangel]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[My Top Aliases and Functions for Terminal]]></title>
-    <link href="http://acrogenseis.com/top-aliases-and-functions-for-terminal/"/>
+    <link href="http://acrogenesis.com/top-aliases-and-functions-for-terminal/"/>
     <updated>2013-11-29T10:27:53-06:00</updated>
-    <id>http://acrogenseis.com/top-aliases-and-functions-for-terminal</id>
+    <id>http://acrogenesis.com/top-aliases-and-functions-for-terminal</id>
     <content type="html"><![CDATA[<p>This are my top aliases for terminal, I&rsquo;ve order them on how frequently I use them and separated by topics.</p>
 
 <p>To add this aliases and functions to your terminal simply run <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
