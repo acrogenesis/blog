@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Terminal | Acrogenesis Blog]]></title>
+  <link href="http://acrogenseis.com/categories/terminal/atom.xml" rel="self"/>
+  <link href="http://acrogenseis.com/"/>
+  <updated>2014-10-15T17:15:44-05:00</updated>
+  <id>http://acrogenseis.com/</id>
+  <author>
+    <name><![CDATA[Adrián Rangel]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[My Top Aliases and Functions for Terminal]]></title>
+    <link href="http://acrogenseis.com/top-aliases-and-functions-for-terminal/"/>
+    <updated>2013-11-29T10:27:53-06:00</updated>
+    <id>http://acrogenseis.com/top-aliases-and-functions-for-terminal</id>
+    <content type="html"><![CDATA[<p>This are my top aliases for terminal, I&rsquo;ve order them on how frequently I use them and separated by topics.</p>
+
+<p>To add this aliases and functions to your terminal simply run <div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> vim ~/.bash_profile
+</span></code></pre></td></tr></table></div></figure></notextile></div> if it doesn&rsquo;t exit it will create a new one.</p>
+
+<p>Git</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">psh</span><span class="o">=</span>&amp;ldquo;git push origin&amp;rdquo; <span class="c">#push to origin specifying branch, ex. psh master</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">pll</span><span class="o">=</span>&amp;ldquo;git pull origin&amp;rdquo; <span class="c">#pull from origin specifying branch, ex. pll master</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">cmm</span><span class="o">=</span>&amp;ldquo;git commit -m&amp;rdquo; <span class="c">#commit</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">cmma</span><span class="o">=</span>&amp;ldquo;git commit -am&amp;rdquo; <span class="c">#commit and add modified files</span>
+</span><span class='line'>rgc<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  git commit -m<span class="s2">&quot;&lt;code&gt;curl -s http://whatthecommit.com/index.txt&lt;/code&gt;&amp;ldquo; #get a random commit message from whatthecommit.com</span>
+</span><span class='line'><span class="s2">}</span>
+</span><span class='line'><span class="s2">function gc() { git clone &amp;rdquo;$1&quot;</span> &amp;amp;&amp;amp; <span class="nb">cd</span> &lt;code&gt;echo <span class="s2">&quot;&#39;$1&#39;&quot;</span> | cut -d/ -f2 | cut -d. -f1&lt;/code&gt;; <span class="o">}</span> <span class="c"># clones git repository and cd&amp;rsquo;s into it</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Files and Folders</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">dev</span><span class="o">=</span>&amp;ldquo;cd ~/Copy/Development&amp;rdquo; <span class="c">#cd to my development folder</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">editbash</span><span class="o">=</span>&amp;ldquo;mvim ~/.bash_profile&amp;rdquo; <span class="c">#open my bash_profile in MacVim (you can change this to the editor you wish)</span>
+</span><span class='line'><span class="k">function </span>mcd<span class="o">()</span> <span class="o">{</span> mkdir -p &amp;ldquo;<span class="nv">$1</span>&amp;rdquo; &amp;amp;&amp;amp; <span class="nb">cd</span> &amp;ldquo;<span class="nv">$1</span>&amp;rdquo;;<span class="o">}</span> <span class="c">#mkdir a folder and cd into it</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>DNS</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">cleardns</span><span class="o">=</span>&amp;ldquo;sudo killall -HUP mDNSResponder&amp;rdquo; <span class="c">#clear dns on 10.8+</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Changing Mac Address(I&rsquo;m using en0 check which interface you use running ifconfig)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">mac</span><span class="o">=</span>&amp;ldquo;sudo ifconfig en0 ether&amp;rdquo; <span class="c">#specify a mac address, ex mac 11:22:33:44:55:66</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">mymac</span><span class="o">=</span>&amp;ldquo;sudo ifconfig en0 ether 11:22:33:44:55:66&amp;rdquo; <span class="c">#revert back to my mac address, you have to check you mac address first.</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">chkmac</span><span class="o">=</span>&amp;ldquo;ifconfig en0 |grep ether&amp;rdquo; <span class="c">#check the mac I currently use</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">ranmac</span><span class="o">=</span>&amp;ldquo;openssl rand -hex 6 | sed &amp;rsquo;s/<span class="o">(</span>..<span class="o">)</span>/<span class="se">\1</span>:/g; s/.<span class="nv">$/</span>/&amp;lsquo;&amp;rdquo; <span class="c"># generate a random mac address</span>
+</span><span class='line'>rmac<span class="o">(){</span>
+</span><span class='line'>  sudo ifconfig en0 ether &lt;code&gt;ranmac&lt;/code&gt;; <span class="c">#apply a random mac address</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Beautiful Terminal (when on a git repository it show the branch you are on)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;Git branch in prompt.&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;parse_git_branch<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  git branch 2&gt; /dev/null | sed -e &amp;lsquo;/^<span class="o">[</span>^&lt;em&gt;<span class="o">]</span>/d&amp;rsquo; -e &amp;rsquo;s/&lt;/em&gt; <span class="o">(</span>.*<span class="o">)</span>/ <span class="o">(</span><span class="se">\1</span><span class="o">)</span>/&amp;lsquo;
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">function </span>prompt <span class="o">{</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">GRAY</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;37m<span class="o">]</span>&amp;rdquo;
+</span><span class='line'>  <span class="nb">local </span><span class="nv">WHITE</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>1;37m<span class="o">]</span>&amp;rdquo;
+</span><span class='line'>  <span class="nb">local </span><span class="nv">GREEN</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;32m<span class="o">]</span>&amp;rdquo;
+</span><span class='line'>  <span class="nb">local </span><span class="nv">CYAN</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;36m<span class="o">]</span>&amp;rdquo;
+</span><span class='line'>  <span class="nb">local </span><span class="nv">MAGENTA</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;35m<span class="o">]</span>&amp;rdquo;
+</span><span class='line'>  <span class="nb">local </span><span class="nv">RED</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;31m<span class="o">]</span>&amp;rdquo;
+</span><span class='line'>  <span class="nb">local </span><span class="nv">BLACK</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;30m<span class="o">]</span>&amp;rdquo;
+</span><span class='line'>  <span class="nb">local </span><span class="nv">YELLOW</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;33m<span class="o">]</span>&amp;rdquo;
+</span><span class='line'>  <span class="nb">local </span><span class="nv">BLUE</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;34m<span class="o">]</span>&amp;rdquo;
+</span><span class='line'>  <span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span>&amp;ldquo;<span class="k">${</span><span class="nv">GREEN</span><span class="k">}</span><span class="se">\u</span>@<span class="k">${</span><span class="nv">WHITE</span><span class="k">}</span>mbp:<span class="k">${</span><span class="nv">RED</span><span class="k">}</span>acrogenesis<span class="k">${</span><span class="nv">WHITE</span><span class="k">}</span><span class="se">\$</span><span class="o">(</span>parse_git_branch<span class="o">)</span> <span class="se">\w</span> <span class="sb">`</span><span class="k">if</span> <span class="o">[</span> <span class="se">\$</span>? <span class="o">=</span> 0 <span class="o">]</span>; <span class="k">then </span><span class="nb">echo</span> -e &amp;rsquo;<span class="o">[</span><span class="se">\e</span><span class="o">[</span>01;32m<span class="o">]</span><span class="se">\n\x</span>F0<span class="se">\x</span>9F<span class="se">\x</span>9A<span class="se">\x</span>80<span class="err">&#39;</span>; <span class="k">else </span><span class="nb">echo</span> -e &amp;lsquo;<span class="o">[</span><span class="se">\e</span><span class="o">[</span>01;31m<span class="o">]</span><span class="se">\n\x</span>F0<span class="se">\x</span>9F<span class="se">\x</span>9A<span class="se">\x</span>80&amp;rsquo;; <span class="k">fi</span><span class="sb">`</span> <span class="o">[</span><span class="se">\e</span><span class="o">[</span>01;34m<span class="o">][</span><span class="se">\e</span><span class="o">[</span>00m<span class="o">]</span> &amp;rdquo;
+</span><span class='line'>  <span class="nb">export </span><span class="nv">CLICOLOR</span><span class="o">=</span>1
+</span><span class='line'>  <span class="nb">export </span><span class="nv">LSCOLORS</span><span class="o">=</span>GxFxCxDxBxegedabagaced
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>prompt
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>[gallery columns=&ldquo;2&rdquo; link=&ldquo;none&rdquo; type=&ldquo;slideshow&rdquo; ids=&ldquo;48,47&rdquo;]</p>
+]]></content>
+  </entry>
+  
+</feed>

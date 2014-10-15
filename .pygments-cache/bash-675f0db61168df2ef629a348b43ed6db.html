@@ -1,0 +1,20 @@
+<div class="highlight"><pre><span class="c"># Git branch in prompt.</span>
+parse_git_branch<span class="o">()</span> <span class="o">{</span>
+  git branch 2&gt; /dev/null | sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ (\1)/&#39;</span>
+<span class="o">}</span>
+<span class="k">function </span>prompt <span class="o">{</span>
+  <span class="nb">local </span><span class="nv">GRAY</span><span class="o">=</span><span class="s2">&quot;\[\033[0;37m\]&quot;</span>
+  <span class="nb">local </span><span class="nv">WHITE</span><span class="o">=</span><span class="s2">&quot;\[\033[1;37m\]&quot;</span>
+  <span class="nb">local </span><span class="nv">GREEN</span><span class="o">=</span><span class="s2">&quot;\[\033[0;32m\]&quot;</span>
+  <span class="nb">local </span><span class="nv">CYAN</span><span class="o">=</span><span class="s2">&quot;\[\033[0;36m\]&quot;</span>
+  <span class="nb">local </span><span class="nv">MAGENTA</span><span class="o">=</span><span class="s2">&quot;\[\033[0;35m\]&quot;</span>
+  <span class="nb">local </span><span class="nv">RED</span><span class="o">=</span><span class="s2">&quot;\[\033[0;31m\]&quot;</span>
+  <span class="nb">local </span><span class="nv">BLACK</span><span class="o">=</span><span class="s2">&quot;\[\033[0;30m\]&quot;</span>
+  <span class="nb">local </span><span class="nv">YELLOW</span><span class="o">=</span><span class="s2">&quot;\[\033[0;33m\]&quot;</span>
+  <span class="nb">local </span><span class="nv">BLUE</span><span class="o">=</span><span class="s2">&quot;\[\033[0;34m\]&quot;</span>
+  <span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;${GREEN}\u@${WHITE}mbp:${RED}acrogenesis${WHITE}\$(parse_git_branch) \w \`if [ \$? = 0 ]; then echo -e &#39;\[\e[01;32m\]\n\xF0\x9F\x9A\x80&#39;; else echo -e &#39;\[\e[01;31m\]\n\xF0\x9F\x9A\x80&#39;; fi\` \[\e[01;34m\]\[\e[00m\] &quot;</span>
+  <span class="nb">export </span><span class="nv">CLICOLOR</span><span class="o">=</span>1
+  <span class="nb">export </span><span class="nv">LSCOLORS</span><span class="o">=</span>GxFxCxDxBxegedabagaced
+<span class="o">}</span>
+prompt
+</pre></div>

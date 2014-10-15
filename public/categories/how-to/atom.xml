@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: How-To | Acrogenesis Blog]]></title>
+  <link href="http://acrogenseis.com/categories/how-to/atom.xml" rel="self"/>
+  <link href="http://acrogenseis.com/"/>
+  <updated>2014-10-15T17:15:44-05:00</updated>
+  <id>http://acrogenseis.com/</id>
+  <author>
+    <name><![CDATA[Adrián Rangel]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How-To Upgrade Your Wordpress Blog to an Octopress Blog]]></title>
+    <link href="http://acrogenseis.com/how-to-upgrade-your-wordpress-blog-to-an-octopress-blog/"/>
+    <updated>2014-02-03T12:27:44-06:00</updated>
+    <id>http://acrogenseis.com/how-to-upgrade-your-wordpress-blog-to-an-octopress-blog</id>
+    <content type="html"><![CDATA[<p>Recently I upgraded this blog from Wordpress to Octopress. I&rsquo;ll walk you
+through on the process I followed.</p>
+
+<p>I&rsquo;ll assume you already have Octopress up &amp; running, if you don&rsquo;t you
+can follow setup instructions at
+<a href="http://octopress.org/docs/setup/">Octopress</a>.</p>
+
+<p>Now let&rsquo;s export your Wordpress data, go to
+<a href="http://yourblog.com/wp-admin/export.php">http://yourblog.com/wp-admin/export.php</a> and select to export all your
+content.</p>
+
+<p><img class="full-width" src="/images/upgrade-wordpress-to-octopress/export-all-content.png" title="&lsquo;Export All Content&rsquo; &lsquo;Export All Content&rsquo;" ></p>
+
+<p>This will give you a <code>.xml</code> file which we will use to transfer your
+comments to disqus after transfering your posts.</p>
+
+<p>To transfer your posts we&rsquo;ll use a tool called <a href="https://github.com/thomasf/exitwp">exitwp</a></p>
+
+<p>Let&rsquo;s start by cloning the repo
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">git</span> <span class="nb">clone</span> <span class="n">git</span><span class="vi">@github</span><span class="o">.</span><span class="n">com</span><span class="ss">:thomasf</span><span class="o">/</span><span class="n">exitwp</span><span class="o">.</span><span class="n">git</span> <span class="n">exitwp</span>
+</span><span class='line'><span class="n">cd</span> <span class="n">exitwp</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Install dependencies
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pip</span> <span class="n">install</span> <span class="n">pyyaml</span>
+</span><span class='line'><span class="n">pip</span> <span class="n">install</span> <span class="n">beautifulsoup4</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Copy the <code>.xml</code> file into <code>wordpress-xml</code> folder and check if it&rsquo;s
+valid
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;copy the .xml file into wordpress-xml&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">cp</span> <span class="o">.</span><span class="n">.</span><span class="o">/</span><span class="n">path_to</span><span class="o">/</span><span class="n">exported</span><span class="o">.</span><span class="n">xml</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">xml</span><span class="o">/</span><span class="n">exported</span><span class="o">.</span><span class="n">xml</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;check xml is properly formated with xmllint&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span><span class="n">xmllint</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">xml</span><span class="o">/</span><span class="n">exported</span><span class="o">.</span><span class="n">xml</span><span class="o">&lt;</span><span class="sr">/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="sr">&lt;h1&gt;solve any errors you encounter&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nb">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Run the converter
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">python</span> <span class="n">exitwp</span><span class="o">.</span><span class="n">py</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This will generate your posts inside <code>build/jekyll/yourblog/_posts</code>
+, copy all the <em>posts files into your </em>posts files
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="n">build</span><span class="o">/</span><span class="n">jekyll</span><span class="o">/</span><span class="n">yourblog</span><span class="o">/&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">posts</span> <span class="o">.</span><span class="n">.</span><span class="o">/</span><span class="n">octopress</span><span class="o">/</span><span class="n">source</span><span class="o">/&lt;</span><span class="sr">/em&gt;posts</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>You have now finished exporting your posts to your Octopress blog; now let&rsquo;s
+export the comments to Disqus.</p>
+
+<p>First create an account at <a href="https://disqus.com/profile/signup/">Disqus</a></p>
+
+<p>After you&rsquo;ve created your account let&rsquo;s <a href="http://disqus.com/admin/create/">Register your website at Disqus</a>
+<img class="full-width" src="/images/upgrade-wordpress-to-octopress/add-disqus-site.png" title="&lsquo;Add Disqus site&rsquo; &lsquo;Add Disqus site&rsquo;" ></p>
+
+<p>Take note of your &lsquo;shortname&rsquo; we will be using it next.</p>
+
+<p>Now let&rsquo;s add Disqus to your blog, open your <code>_config.yml</code>.</p>
+
+<p>Find the comment <code>#Disqus Comments</code> and add your shortname on <code>disqus_short_name: myblog</code> this will automagically setup Disqus on your blog.</p>
+
+<p>Now lets import the comments on Disqus, we will be using the same
+<code>.xml</code> file.</p>
+
+<p>Visit the admin panel then click on Discussions and
+select your newly created site.</p>
+
+<p>Inside here click on Import and the Wordperss import should be already selected, click Choose File and select your <code>.xml</code> file</p>
+
+<p>Click Upload and Import</p>
+
+<p><img class="full-width" src="/images/upgrade-wordpress-to-octopress/import-wordpress-comments.png" title="&lsquo;Import Disqus Comments&rsquo; &lsquo;Import Disqus Comments&rsquo;" ></p>
+
+<p>This will upload your current comments to Disqus, if your url&rsquo;s won&rsquo;t
+change you can stop here and in a few hours all your comments will be
+appearing on your new blog! But if your url&rsquo;s will be chaning
+you have to map the old url&rsquo;s with the new url&rsquo;s.</p>
+
+<p>To do this click on Tools (on the same page you clicked Import) and
+select the most appropiate method for merging threads, in my case I used
+Url Mapper.</p>
+
+<p><img class="full-width" src="/images/upgrade-wordpress-to-octopress/migrate-threads.png" title="&lsquo;Migrate threads&rsquo; &lsquo;Migrate threads&rsquo;" ></p>
+
+<p>Click on the link that says <code>you can download a CSV here</code> that will
+email you a CSV file which will contain all the old url&rsquo;s, you will
+have to map this url&rsquo;s with the new one&rsquo;s.</p>
+
+<p>Upload URL maps in CSV format (comma separated value). The correct format is:
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;a href="http://example.com/old-path/old/posta.html,">http://example.com/old-path/old/posta.html,&lt;/a> &lt;a href="http://example.com/new-path/new/posta.html">http://example.com/new-path/new/posta.html&lt;/a>
+</span><span class='line'>&lt;a href="http://example.com/old-path/old/postb.html,">http://example.com/old-path/old/postb.html,&lt;/a> &lt;a href="http://example.com/new-path/new/postb.html">http://example.com/new-path/new/postb.html&lt;/a></span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>You can also add a <a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd party theme</a>
+to further customize your blog.</p>
+
+<p>Don&rsquo;t forget to run
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rake</span> <span class="n">generate</span>
+</span><span class='line'><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">A</span>
+</span><span class='line'><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">finish</span> <span class="n">upgrading</span> <span class="n">wordpress</span> <span class="n">to</span> <span class="n">octopress</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+Which will make all the static files for your website.</p>
+
+<p>You have successfully upgraded your Wordpress Blog to an Octopress Blog, now just <a href="http://octopress.org/docs/deploying/">Deploy</a> your blog.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Bypass Hotspot Logins on a Mac]]></title>
+    <link href="http://acrogenseis.com/how-to-bypass-hotspot-logins/"/>
+    <updated>2014-01-07T11:46:03-06:00</updated>
+    <id>http://acrogenseis.com/how-to-bypass-hotspot-logins</id>
+    <content type="html"><![CDATA[<p>If you are reading this you have probably faced a Hotspot at an airport, hotel, cafe etc. where the WiFi access was open but you faced a Hotspot login portal asking you to agree terms &amp; conditions or pay a fee.</p>
+
+<p>Luckily there&rsquo;s an easy way around this which is based on how the portal allows some devices in and the other not.</p>
+
+<p>Every device that connects to a network has a <a href="https://en.wikipedia.org/wiki/MAC_address">MAC</a> address this address is embedded in your device and is unique. This is what the Hotspot checks to see if you are allowed to access the internet or not.</p>
+
+<p>What we are going to do is called &lsquo;<a href="https://en.wikipedia.org/wiki/MAC_spoofing">MAC Address Spoofing</a>&rsquo;. Doing this will help us impersonate another device on the network which hopefully does have internet access.</p>
+
+<p>Open Terminal</p>
+
+<p>We need the MAC address we are going to impersonate. To get all MAC address in you ARP cache run</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>arp -na | sort -u -t<span class="err">&#39;</span> &amp;lsquo; -k4,4
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This will give you a list of ip address with their corresponding MAC addresses. Save this list we will be using it later.</p>
+
+<p>Now we have to change our MAC address to one of the list and luckily will get internet access. To change(spoof) your MAC address run</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ifconfig en0 ether 00:00:00:00:00:00
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>where 00:00&hellip; is the MAC address to spoof.</p>
+
+<p>Now just turn off and on your WiFi try and access <a href="http://bluehats.mx/blog">http://bluehats.mx/blog</a> if you face a Hotspot login try another MAC address from the list, if not you are already connected to the internet!</p>
+
+<p>If running arp -na didn&rsquo;t give you results or the MAC addresses you tried didn&rsquo;t give you internet connectivity you will have to ping all devices with nmap here is how to do it:</p>
+
+<p>To ping all devices on the network with nmap you need to have installed nmap on your mac the easiest way is thru <a href="http://brew.sh/">brew</a> which if you don&rsquo;t have installed you have to install it to.</p>
+
+<p>After installing brew  run</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install nmap
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now we need to know which addresses and netmask we are going to ping. So run</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ifconfig | grep inet
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>and look for one that starts with 192.168.X.X, 172.X.X.X or 10.X.X.X like:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>inet 192.168.2.156 netmask 0xffffff00 broadcast 192.168.2.255
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>To convert the hexadecimal netmask to decimal look it up at <a href="http://www.pawprint.net/designresources/netmask-converter.php">http://www.pawprint.net/designresources/netmask-converter.php</a></p>
+
+<p>Mine is /24</p>
+
+<p>Now let&rsquo;s ping all the devices, depending on the address and netmask you got is what you will ping.</p>
+
+<p>Examples:</p>
+
+<p>For 192.168.2.156 netmask 24</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nmap -sn 192.168.2.0/24
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>for 172.16.0.156 netmask 16</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nmap -sn 172.16.0.0/16
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>for 10.5.4.2 netmask 8</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nmap -sn 10.0.0.0/8
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now run again</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>arp -na | sort -u -t<span class="err">&#39;</span> &amp;lsquo; -k4,4
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The list will now have all devices connected to the network.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How to Bypass API Restrictions]]></title>
+    <link href="http://acrogenseis.com/how-to-bypass-api-restrictions/"/>
+    <updated>2013-09-27T22:03:01-05:00</updated>
+    <id>http://acrogenseis.com/how-to-bypass-api-restrictions</id>
+    <content type="html"><![CDATA[<p>Don&rsquo;t you hate it when a free API has limits on the number of request you can do? I was hitting the wunderground.com and openexchangerates.org API&rsquo;s limits often. The problem was when we had a traffic spike. We didn&rsquo;t want to pay for premium the same way we don&rsquo;t want to pay extra bandwidth in case of a spontaneous traffic surge. So we came with the idea to cache it. Here&rsquo;s an easy way to ‘cache’ the API&rsquo;s JSON response.</p>
+
+<p>First of all let’s create a shell script (.sh) (I’ll be doing the example for the wunderground API) and add some code (I use VIM, the vim command will create the file)</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim getWeather.sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;h1&gt;!/bin/bash&lt;/h1&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;cd /home/user/pathto/weatherapi
+</span><span class='line'>wget -O &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">&quot;http://api.wunderground.com/api/heregoeskey/forecast/lang:SP/q/Mexico/Monterrey.json&quot;</span>&gt;http://api.wunderground.com/api/heregoeskey/forecast/lang:SP/q/Mexico/Monterrey.json&lt;/a&gt;
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This script works as follows: It goes to the path where you created the getWeather.sh  get’s the json from the API we are trying to bypass restrictions.</p>
+
+<p>Now instead of calling api.wunderground.com on your website call mywebsite.com/pathto/weatherapi/Monterrey.json this will give us the same file but locally bypassing the amounts of calls done to the api server.</p>
+
+<p>Now we need to refresh the file we made locally so for this we make a cronjob, to make a cronjob type</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>crontab -e
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This will open the cron editor, just add the following and we should be refreshing our local json every hour</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>0 * * * * /home/user/pathto/weatherapi/getWeather.sh
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>The api call to the service will only be done every hour instead of every hit on your website. Now we are good to go!</p>
+
+<p>Good luck!
+<a href="https://twitter.com/acrogenesis">@acrogenesis</a></p>
+
+<p>Thanks <a href="http://www.reddit.com/user/Cixis">/u/Cixis</a> for some suggestions</p>
+]]></content>
+  </entry>
+  
+</feed>

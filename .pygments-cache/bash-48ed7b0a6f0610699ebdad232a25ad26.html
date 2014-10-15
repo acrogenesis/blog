@@ -1,0 +1,23 @@
+<div class="highlight"><pre>&lt;/p&gt;
+
+&lt;h1&gt;Git branch in prompt.&lt;/h1&gt;
+
+&lt;p&gt;parse_git_branch<span class="o">()</span> <span class="o">{</span>
+  git branch 2&gt; /dev/null | sed -e &amp;lsquo;/^<span class="o">[</span>^&lt;em&gt;<span class="o">]</span>/d&amp;rsquo; -e &amp;rsquo;s/&lt;/em&gt; <span class="o">(</span>.*<span class="o">)</span>/ <span class="o">(</span><span class="se">\1</span><span class="o">)</span>/&amp;lsquo;
+<span class="o">}</span>
+<span class="k">function </span>prompt <span class="o">{</span>
+  <span class="nb">local </span><span class="nv">GRAY</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;37m<span class="o">]</span>&amp;rdquo;
+  <span class="nb">local </span><span class="nv">WHITE</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>1;37m<span class="o">]</span>&amp;rdquo;
+  <span class="nb">local </span><span class="nv">GREEN</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;32m<span class="o">]</span>&amp;rdquo;
+  <span class="nb">local </span><span class="nv">CYAN</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;36m<span class="o">]</span>&amp;rdquo;
+  <span class="nb">local </span><span class="nv">MAGENTA</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;35m<span class="o">]</span>&amp;rdquo;
+  <span class="nb">local </span><span class="nv">RED</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;31m<span class="o">]</span>&amp;rdquo;
+  <span class="nb">local </span><span class="nv">BLACK</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;30m<span class="o">]</span>&amp;rdquo;
+  <span class="nb">local </span><span class="nv">YELLOW</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;33m<span class="o">]</span>&amp;rdquo;
+  <span class="nb">local </span><span class="nv">BLUE</span><span class="o">=</span>&amp;ldquo;<span class="o">[</span><span class="se">\0</span>33<span class="o">[</span>0;34m<span class="o">]</span>&amp;rdquo;
+  <span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span>&amp;ldquo;<span class="k">${</span><span class="nv">GREEN</span><span class="k">}</span><span class="se">\u</span>@<span class="k">${</span><span class="nv">WHITE</span><span class="k">}</span>mbp:<span class="k">${</span><span class="nv">RED</span><span class="k">}</span>acrogenesis<span class="k">${</span><span class="nv">WHITE</span><span class="k">}</span><span class="se">\$</span><span class="o">(</span>parse_git_branch<span class="o">)</span> <span class="se">\w</span> <span class="sb">`</span><span class="k">if</span> <span class="o">[</span> <span class="se">\$</span>? <span class="o">=</span> 0 <span class="o">]</span>; <span class="k">then </span><span class="nb">echo</span> -e &amp;rsquo;<span class="o">[</span><span class="se">\e</span><span class="o">[</span>01;32m<span class="o">]</span><span class="se">\n\x</span>F0<span class="se">\x</span>9F<span class="se">\x</span>9A<span class="se">\x</span>80<span class="err">&#39;</span>; <span class="k">else </span><span class="nb">echo</span> -e &amp;lsquo;<span class="o">[</span><span class="se">\e</span><span class="o">[</span>01;31m<span class="o">]</span><span class="se">\n\x</span>F0<span class="se">\x</span>9F<span class="se">\x</span>9A<span class="se">\x</span>80&amp;rsquo;; <span class="k">fi</span><span class="sb">`</span> <span class="o">[</span><span class="se">\e</span><span class="o">[</span>01;34m<span class="o">][</span><span class="se">\e</span><span class="o">[</span>00m<span class="o">]</span> &amp;rdquo;
+  <span class="nb">export </span><span class="nv">CLICOLOR</span><span class="o">=</span>1
+  <span class="nb">export </span><span class="nv">LSCOLORS</span><span class="o">=</span>GxFxCxDxBxegedabagaced
+<span class="o">}</span>
+prompt
+</pre></div>

@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Top Aliases and Functions for Terminal - Acrogenesis Blog</title>
+  <meta name="author" content="Adrián Rangel">
+
+  
+  <meta name="description" content="This are my top aliases for terminal, I&rsquo;ve order them on how frequently I use them and separated by topics. To add this aliases and functions &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://acrogenseis.com/top-aliases-and-functions-for-terminal">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Acrogenesis Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Acrogenesis Blog</a></h1>
+  
+    <h2>Bleeding edge developer.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation">
+
+  <form method="get" action="/search.html">
+    <fieldset role="search">
+      <input class="search" name="query" type="text" placeholder="Search..." x-webkit-speech />
+    </fieldset>
+  </form>
+
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://eepurl.com/NE0x1" rel="subscribe-email" title="subscribe via email">Subscribe</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">My Top Aliases and Functions for Terminal</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-29T10:27:53-06:00" pubdate data-updated="true">Nov 29<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>This are my top aliases for terminal, I&rsquo;ve order them on how frequently I use them and separated by topics.</p>
+
+<p>To add this aliases and functions to your terminal simply run </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> vim ~/.bash_profile
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> if it doesn&rsquo;t exit it will create a new one.</p>
+
+<p>Git</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">psh</span><span class="o">=</span><span class="s2">&quot;git push origin&quot;</span> <span class="c">#push to origin specifying branch, ex. psh master</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">pll</span><span class="o">=</span><span class="s2">&quot;git pull origin&quot;</span> <span class="c">#pull from origin specifying branch, ex. pll master</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">cmm</span><span class="o">=</span><span class="s2">&quot;git commit -m&quot;</span> <span class="c">#commit</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">cmma</span><span class="o">=</span><span class="s2">&quot;git commit -am&quot;</span> <span class="c">#commit and add modified files</span>
+</span><span class='line'>rgc<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  git commit -m<span class="s2">&quot;`curl -s http://whatthecommit.com/index.txt`&quot;</span> <span class="c">#get a random commit message from whatthecommit.com</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">function </span>gc<span class="o">()</span> <span class="o">{</span> git clone <span class="s2">&quot;$1&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="sb">`</span><span class="nb">echo</span> <span class="s2">&quot;&#39;$1&#39;&quot;</span> | cut -d/ -f2 | cut -d. -f1<span class="sb">`</span>; <span class="o">}</span> <span class="c"># clones git repository and cd&#39;s into it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Files and Folders</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">dev</span><span class="o">=</span><span class="s2">&quot;cd ~/Copy/Development&quot;</span> <span class="c">#cd to my development folder</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">editbash</span><span class="o">=</span><span class="s2">&quot;mvim ~/.bash_profile&quot;</span> <span class="c">#open my bash_profile in MacVim (you can change this to the editor you wish)</span>
+</span><span class='line'><span class="k">function </span>mcd<span class="o">()</span> <span class="o">{</span> mkdir -p <span class="s2">&quot;$1&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="s2">&quot;$1&quot;</span>;<span class="o">}</span> <span class="c">#mkdir a folder and cd into it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>DNS</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">cleardns</span><span class="o">=</span><span class="s2">&quot;sudo killall -HUP mDNSResponder&quot;</span> <span class="c">#clear dns on 10.8+</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Changing Mac Address(I&rsquo;m using en0 check which interface you use running ifconfig)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">mac</span><span class="o">=</span><span class="s2">&quot;sudo ifconfig en0 ether&quot;</span> <span class="c">#specify a mac address, ex mac 11:22:33:44:55:66</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">mymac</span><span class="o">=</span><span class="s2">&quot;sudo ifconfig en0 ether 11:22:33:44:55:66&quot;</span> <span class="c">#revert back to my mac address, you have to check you mac address first.</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">chkmac</span><span class="o">=</span><span class="s2">&quot;ifconfig en0 |grep ether&quot;</span> <span class="c">#check the mac I currently use</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">ranmac</span><span class="o">=</span><span class="s2">&quot;openssl rand -hex 6 | sed &#39;s/\(..\)/\1:/g; s/.$//&#39;&quot;</span> <span class="c"># generate a random mac address</span>
+</span><span class='line'>rmac<span class="o">(){</span>
+</span><span class='line'>  sudo ifconfig en0 ether <span class="sb">`</span>ranmac<span class="sb">`</span>; <span class="c">#apply a random mac address</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Beautiful Terminal (when on a git repository it show the branch you are on)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Git branch in prompt.</span>
+</span><span class='line'>parse_git_branch<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  git branch 2&gt; /dev/null | sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ (\1)/&#39;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">function </span>prompt <span class="o">{</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">GRAY</span><span class="o">=</span><span class="s2">&quot;\[\033[0;37m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">WHITE</span><span class="o">=</span><span class="s2">&quot;\[\033[1;37m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">GREEN</span><span class="o">=</span><span class="s2">&quot;\[\033[0;32m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">CYAN</span><span class="o">=</span><span class="s2">&quot;\[\033[0;36m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">MAGENTA</span><span class="o">=</span><span class="s2">&quot;\[\033[0;35m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">RED</span><span class="o">=</span><span class="s2">&quot;\[\033[0;31m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">BLACK</span><span class="o">=</span><span class="s2">&quot;\[\033[0;30m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">YELLOW</span><span class="o">=</span><span class="s2">&quot;\[\033[0;33m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">BLUE</span><span class="o">=</span><span class="s2">&quot;\[\033[0;34m\]&quot;</span>
+</span><span class='line'>  <span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;${GREEN}\u@${WHITE}mbp:${RED}acrogenesis${WHITE}\$(parse_git_branch) \w \`if [ \$? = 0 ]; then echo -e &#39;\[\e[01;32m\]\n\xF0\x9F\x9A\x80&#39;; else echo -e &#39;\[\e[01;31m\]\n\xF0\x9F\x9A\x80&#39;; fi\` \[\e[01;34m\]\[\e[00m\] &quot;</span>
+</span><span class='line'>  <span class="nb">export </span><span class="nv">CLICOLOR</span><span class="o">=</span>1
+</span><span class='line'>  <span class="nb">export </span><span class="nv">LSCOLORS</span><span class="o">=</span>GxFxCxDxBxegedabagaced
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>prompt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>[gallery columns=&ldquo;2&rdquo; link=&ldquo;none&rdquo; type=&ldquo;slideshow&rdquo; ids=&ldquo;48,47&rdquo;]</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">acrogenesis</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-29T10:27:53-06:00" pubdate data-updated="true">Nov 29<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/terminal/'>Terminal</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://acrogenseis.com/top-aliases-and-functions-for-terminal/" data-via="acrogenesis" data-counturl="http://acrogenseis.com/top-aliases-and-functions-for-terminal/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/how-to-bypass-api-restrictions/" title="Previous Post: How to bypass API restrictions">&laquo; How to bypass API restrictions</a>
+      
+      
+        <a class="basic-alignment right" href="/how-to-bypass-hotspot-logins/" title="Next Post: How to Bypass Hotspot logins on a mac">How to Bypass Hotspot logins on a mac &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/how-to-upgrade-your-wordpress-blog-to-an-octopress-blog/">How-To Upgrade Your Wordpress Blog to an Octopress Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-bypass-hotspot-logins/">How to Bypass Hotspot Logins on a Mac</a>
+      </li>
+    
+      <li class="post">
+        <a href="/top-aliases-and-functions-for-terminal/">My Top Aliases and Functions for Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-bypass-api-restrictions/">How to Bypass API Restrictions</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/acrogenesis">@acrogenesis</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'acrogenesis',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/106999223922545207134?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Adrián Rangel -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> and <a href="https://github.com/vladigleba/readify">Readify</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'acrogenseis';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://acrogenseis.com/top-aliases-and-functions-for-terminal/';
+        var disqus_url = 'http://acrogenseis.com/top-aliases-and-functions-for-terminal/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

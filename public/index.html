@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Acrogenesis Blog</title>
+  <meta name="author" content="Adrián Rangel">
+
+  
+  <meta name="description" content="Recently I upgraded this blog from Wordpress to Octopress. I&rsquo;ll walk you
+through on the process I followed. I&rsquo;ll assume you already have &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://acrogenseis.com">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Acrogenesis Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Acrogenesis Blog</a></h1>
+  
+    <h2>Bleeding edge developer.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation">
+
+  <form method="get" action="/search.html">
+    <fieldset role="search">
+      <input class="search" name="query" type="text" placeholder="Search..." x-webkit-speech />
+    </fieldset>
+  </form>
+
+<ul class="main-navigation">
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="http://eepurl.com/NE0x1" rel="subscribe-email" title="subscribe via email">Subscribe</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/how-to-upgrade-your-wordpress-blog-to-an-octopress-blog/">How-To Upgrade Your Wordpress Blog to an Octopress Blog</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-03T12:27:44-06:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently I upgraded this blog from Wordpress to Octopress. I&rsquo;ll walk you
+through on the process I followed.</p>
+
+<p>I&rsquo;ll assume you already have Octopress up &amp; running, if you don&rsquo;t you
+can follow setup instructions at
+<a href="http://octopress.org/docs/setup/">Octopress</a>.</p>
+
+<p>Now let&rsquo;s export your Wordpress data, go to
+<a href="http://yourblog.com/wp-admin/export.php">http://yourblog.com/wp-admin/export.php</a> and select to export all your
+content.</p>
+
+<p><img class="full-width" src="/images/upgrade-wordpress-to-octopress/export-all-content.png" title="Export All Content" alt="Export All Content"></p>
+
+<p>This will give you a <code>.xml</code> file which we will use to transfer your
+comments to disqus after transfering your posts.</p>
+
+<p>To transfer your posts we&rsquo;ll use a tool called <a href="https://github.com/thomasf/exitwp">exitwp</a></p>
+
+<p>Let&rsquo;s start by cloning the repo</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">git</span> <span class="nb">clone</span> <span class="n">git</span><span class="vi">@github</span><span class="o">.</span><span class="n">com</span><span class="ss">:thomasf</span><span class="o">/</span><span class="n">exitwp</span><span class="o">.</span><span class="n">git</span> <span class="n">exitwp</span>
+</span><span class='line'><span class="n">cd</span> <span class="n">exitwp</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Install dependencies</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pip</span> <span class="n">install</span> <span class="n">pyyaml</span>
+</span><span class='line'><span class="n">pip</span> <span class="n">install</span> <span class="n">beautifulsoup4</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Copy the <code>.xml</code> file into <code>wordpress-xml</code> folder and check if it&rsquo;s
+valid</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># copy the .xml file into wordpress-xml</span>
+</span><span class='line'><span class="n">cp</span> <span class="o">.</span><span class="n">.</span><span class="o">/</span><span class="n">path_to</span><span class="o">/</span><span class="n">exported</span><span class="o">.</span><span class="n">xml</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">xml</span><span class="o">/</span><span class="n">exported</span><span class="o">.</span><span class="n">xml</span>
+</span><span class='line'><span class="c1"># check xml is properly formated with xmllint</span>
+</span><span class='line'><span class="n">xmllint</span> <span class="n">wordpress</span><span class="o">-</span><span class="n">xml</span><span class="o">/</span><span class="n">exported</span><span class="o">.</span><span class="n">xml</span>
+</span><span class='line'><span class="c1"># solve any errors you encounter</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Run the converter</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">python</span> <span class="n">exitwp</span><span class="o">.</span><span class="n">py</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will generate your posts inside <code>build/jekyll/yourblog/_posts</code>
+, copy all the <em>posts files into your </em>posts files</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="n">build</span><span class="o">/</span><span class="n">jekyll</span><span class="o">/</span><span class="n">yourblog</span><span class="o">/</span><span class="n">_posts</span> <span class="o">.</span><span class="n">.</span><span class="o">/</span><span class="n">octopress</span><span class="o">/</span><span class="n">source</span><span class="o">/</span><span class="n">_posts</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You have now finished exporting your posts to your Octopress blog; now let&rsquo;s
+export the comments to Disqus.</p>
+
+<p>First create an account at <a href="https://disqus.com/profile/signup/">Disqus</a></p>
+
+<p>After you&rsquo;ve created your account let&rsquo;s <a href="http://disqus.com/admin/create/">Register your website at Disqus</a>
+<img class="full-width" src="/images/upgrade-wordpress-to-octopress/add-disqus-site.png" title="Add Disqus site" alt="Add Disqus site"></p>
+
+<p>Take note of your &lsquo;shortname&rsquo; we will be using it next.</p>
+
+<p>Now let&rsquo;s add Disqus to your blog, open your <code>_config.yml</code>.</p>
+
+<p>Find the comment <code>#Disqus Comments</code> and add your shortname on <code>disqus_short_name: myblog</code> this will automagically setup Disqus on your blog.</p>
+
+<p>Now lets import the comments on Disqus, we will be using the same
+<code>.xml</code> file.</p>
+
+<p>Visit the admin panel then click on Discussions and
+select your newly created site.</p>
+
+<p>Inside here click on Import and the Wordperss import should be already selected, click Choose File and select your <code>.xml</code> file</p>
+
+<p>Click Upload and Import</p>
+
+<p><img class="full-width" src="/images/upgrade-wordpress-to-octopress/import-wordpress-comments.png" title="Import Disqus Comments" alt="Import Disqus Comments"></p>
+
+<p>This will upload your current comments to Disqus, if your url&rsquo;s won&rsquo;t
+change you can stop here and in a few hours all your comments will be
+appearing on your new blog! But if your url&rsquo;s will be chaning
+you have to map the old url&rsquo;s with the new url&rsquo;s.</p>
+
+<p>To do this click on Tools (on the same page you clicked Import) and
+select the most appropiate method for merging threads, in my case I used
+Url Mapper.</p>
+
+<p><img class="full-width" src="/images/upgrade-wordpress-to-octopress/migrate-threads.png" title="Migrate threads" alt="Migrate threads"></p>
+
+<p>Click on the link that says <code>you can download a CSV here</code> that will
+email you a CSV file which will contain all the old url&rsquo;s, you will
+have to map this url&rsquo;s with the new one&rsquo;s.</p>
+
+<p>Upload URL maps in CSV format (comma separated value). The correct format is:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://example.com/old-path/old/posta.html, http://example.com/new-path/new/posta.html
+</span><span class='line'>http://example.com/old-path/old/postb.html, http://example.com/new-path/new/postb.html</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can also add a <a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">3rd party theme</a>
+to further customize your blog.</p>
+
+<p>Don&rsquo;t forget to run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">rake</span> <span class="n">generate</span>
+</span><span class='line'><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">A</span>
+</span><span class='line'><span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;finish upgrading wordpress to octopress&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Which will make all the static files for your website.</p>
+
+<p>You have successfully upgraded your Wordpress Blog to an Octopress Blog, now just <a href="http://octopress.org/docs/deploying/">Deploy</a> your blog.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/how-to-bypass-hotspot-logins/">How to Bypass Hotspot Logins on a Mac</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-07T11:46:03-06:00" pubdate data-updated="true">Jan 7<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you are reading this you have probably faced a Hotspot at an airport, hotel, cafe etc. where the WiFi access was open but you faced a Hotspot login portal asking you to agree terms &amp; conditions or pay a fee.</p>
+
+<p>Luckily there&rsquo;s an easy way around this which is based on how the portal allows some devices in and the other not.</p>
+
+<p>Every device that connects to a network has a <a href="https://en.wikipedia.org/wiki/MAC_address">MAC</a> address this address is embedded in your device and is unique. This is what the Hotspot checks to see if you are allowed to access the internet or not.</p>
+
+<p>What we are going to do is called &lsquo;<a href="https://en.wikipedia.org/wiki/MAC_spoofing">MAC Address Spoofing</a>&rsquo;. Doing this will help us impersonate another device on the network which hopefully does have internet access.</p>
+
+<p>Open Terminal</p>
+
+<p>We need the MAC address we are going to impersonate. To get all MAC address in you ARP cache run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>arp -na | sort -u -t<span class="s1">&#39; &#39;</span> -k4,4
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will give you a list of ip address with their corresponding MAC addresses. Save this list we will be using it later.</p>
+
+<p>Now we have to change our MAC address to one of the list and luckily will get internet access. To change(spoof) your MAC address run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>sudo ifconfig en0 ether 00:00:00:00:00:00
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>where 00:00&hellip; is the MAC address to spoof.</p>
+
+<p>Now just turn off and on your WiFi try and access <a href="http://bluehats.mx/blog">http://bluehats.mx/blog</a> if you face a Hotspot login try another MAC address from the list, if not you are already connected to the internet!</p>
+
+<p>If running arp -na didn&rsquo;t give you results or the MAC addresses you tried didn&rsquo;t give you internet connectivity you will have to ping all devices with nmap here is how to do it:</p>
+
+<p>To ping all devices on the network with nmap you need to have installed nmap on your mac the easiest way is thru <a href="http://brew.sh/">brew</a> which if you don&rsquo;t have installed you have to install it to.</p>
+
+<p>After installing brew  run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>brew install nmap
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now we need to know which addresses and netmask we are going to ping. So run</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>ifconfig | grep inet
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and look for one that starts with 192.168.X.X, 172.X.X.X or 10.X.X.X like:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>inet 192.168.2.156 netmask 0xffffff00 broadcast 192.168.2.255
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To convert the hexadecimal netmask to decimal look it up at <a href="http://www.pawprint.net/designresources/netmask-converter.php">http://www.pawprint.net/designresources/netmask-converter.php</a></p>
+
+<p>Mine is /24</p>
+
+<p>Now let&rsquo;s ping all the devices, depending on the address and netmask you got is what you will ping.</p>
+
+<p>Examples:</p>
+
+<p>For 192.168.2.156 netmask 24</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nmap -sn 192.168.2.0/24
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>for 172.16.0.156 netmask 16</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nmap -sn 172.16.0.0/16
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>for 10.5.4.2 netmask 8</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>nmap -sn 10.0.0.0/8
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now run again</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>arp -na | sort -u -t<span class="s1">&#39; &#39;</span> -k4,4
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The list will now have all devices connected to the network.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/top-aliases-and-functions-for-terminal/">My Top Aliases and Functions for Terminal</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-29T10:27:53-06:00" pubdate data-updated="true">Nov 29<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This are my top aliases for terminal, I&rsquo;ve order them on how frequently I use them and separated by topics.</p>
+
+<p>To add this aliases and functions to your terminal simply run </p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'> vim ~/.bash_profile
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p> if it doesn&rsquo;t exit it will create a new one.</p>
+
+<p>Git</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">psh</span><span class="o">=</span><span class="s2">&quot;git push origin&quot;</span> <span class="c">#push to origin specifying branch, ex. psh master</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">pll</span><span class="o">=</span><span class="s2">&quot;git pull origin&quot;</span> <span class="c">#pull from origin specifying branch, ex. pll master</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">cmm</span><span class="o">=</span><span class="s2">&quot;git commit -m&quot;</span> <span class="c">#commit</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">cmma</span><span class="o">=</span><span class="s2">&quot;git commit -am&quot;</span> <span class="c">#commit and add modified files</span>
+</span><span class='line'>rgc<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  git commit -m<span class="s2">&quot;`curl -s http://whatthecommit.com/index.txt`&quot;</span> <span class="c">#get a random commit message from whatthecommit.com</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">function </span>gc<span class="o">()</span> <span class="o">{</span> git clone <span class="s2">&quot;$1&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="sb">`</span><span class="nb">echo</span> <span class="s2">&quot;&#39;$1&#39;&quot;</span> | cut -d/ -f2 | cut -d. -f1<span class="sb">`</span>; <span class="o">}</span> <span class="c"># clones git repository and cd&#39;s into it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Files and Folders</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">dev</span><span class="o">=</span><span class="s2">&quot;cd ~/Copy/Development&quot;</span> <span class="c">#cd to my development folder</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">editbash</span><span class="o">=</span><span class="s2">&quot;mvim ~/.bash_profile&quot;</span> <span class="c">#open my bash_profile in MacVim (you can change this to the editor you wish)</span>
+</span><span class='line'><span class="k">function </span>mcd<span class="o">()</span> <span class="o">{</span> mkdir -p <span class="s2">&quot;$1&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="s2">&quot;$1&quot;</span>;<span class="o">}</span> <span class="c">#mkdir a folder and cd into it</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>DNS</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">cleardns</span><span class="o">=</span><span class="s2">&quot;sudo killall -HUP mDNSResponder&quot;</span> <span class="c">#clear dns on 10.8+</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Changing Mac Address(I&rsquo;m using en0 check which interface you use running ifconfig)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">alias </span><span class="nv">mac</span><span class="o">=</span><span class="s2">&quot;sudo ifconfig en0 ether&quot;</span> <span class="c">#specify a mac address, ex mac 11:22:33:44:55:66</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">mymac</span><span class="o">=</span><span class="s2">&quot;sudo ifconfig en0 ether 11:22:33:44:55:66&quot;</span> <span class="c">#revert back to my mac address, you have to check you mac address first.</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">chkmac</span><span class="o">=</span><span class="s2">&quot;ifconfig en0 |grep ether&quot;</span> <span class="c">#check the mac I currently use</span>
+</span><span class='line'><span class="nb">alias </span><span class="nv">ranmac</span><span class="o">=</span><span class="s2">&quot;openssl rand -hex 6 | sed &#39;s/\(..\)/\1:/g; s/.$//&#39;&quot;</span> <span class="c"># generate a random mac address</span>
+</span><span class='line'>rmac<span class="o">(){</span>
+</span><span class='line'>  sudo ifconfig en0 ether <span class="sb">`</span>ranmac<span class="sb">`</span>; <span class="c">#apply a random mac address</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Beautiful Terminal (when on a git repository it show the branch you are on)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c"># Git branch in prompt.</span>
+</span><span class='line'>parse_git_branch<span class="o">()</span> <span class="o">{</span>
+</span><span class='line'>  git branch 2&gt; /dev/null | sed -e <span class="s1">&#39;/^[^*]/d&#39;</span> -e <span class="s1">&#39;s/* \(.*\)/ (\1)/&#39;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'><span class="k">function </span>prompt <span class="o">{</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">GRAY</span><span class="o">=</span><span class="s2">&quot;\[\033[0;37m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">WHITE</span><span class="o">=</span><span class="s2">&quot;\[\033[1;37m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">GREEN</span><span class="o">=</span><span class="s2">&quot;\[\033[0;32m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">CYAN</span><span class="o">=</span><span class="s2">&quot;\[\033[0;36m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">MAGENTA</span><span class="o">=</span><span class="s2">&quot;\[\033[0;35m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">RED</span><span class="o">=</span><span class="s2">&quot;\[\033[0;31m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">BLACK</span><span class="o">=</span><span class="s2">&quot;\[\033[0;30m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">YELLOW</span><span class="o">=</span><span class="s2">&quot;\[\033[0;33m\]&quot;</span>
+</span><span class='line'>  <span class="nb">local </span><span class="nv">BLUE</span><span class="o">=</span><span class="s2">&quot;\[\033[0;34m\]&quot;</span>
+</span><span class='line'>  <span class="nb">export </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;${GREEN}\u@${WHITE}mbp:${RED}acrogenesis${WHITE}\$(parse_git_branch) \w \`if [ \$? = 0 ]; then echo -e &#39;\[\e[01;32m\]\n\xF0\x9F\x9A\x80&#39;; else echo -e &#39;\[\e[01;31m\]\n\xF0\x9F\x9A\x80&#39;; fi\` \[\e[01;34m\]\[\e[00m\] &quot;</span>
+</span><span class='line'>  <span class="nb">export </span><span class="nv">CLICOLOR</span><span class="o">=</span>1
+</span><span class='line'>  <span class="nb">export </span><span class="nv">LSCOLORS</span><span class="o">=</span>GxFxCxDxBxegedabagaced
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>prompt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>[gallery columns=&ldquo;2&rdquo; link=&ldquo;none&rdquo; type=&ldquo;slideshow&rdquo; ids=&ldquo;48,47&rdquo;]</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/how-to-bypass-api-restrictions/">How to Bypass API Restrictions</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-27T22:03:01-05:00" pubdate data-updated="true">Sep 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Don&rsquo;t you hate it when a free API has limits on the number of request you can do? I was hitting the wunderground.com and openexchangerates.org API&rsquo;s limits often. The problem was when we had a traffic spike. We didn&rsquo;t want to pay for premium the same way we don&rsquo;t want to pay extra bandwidth in case of a spontaneous traffic surge. So we came with the idea to cache it. Here&rsquo;s an easy way to ‘cache’ the API&rsquo;s JSON response.</p>
+
+<p>First of all let’s create a shell script (.sh) (I’ll be doing the example for the wunderground API) and add some code (I use VIM, the vim command will create the file)</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>vim getWeather.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/bin/bash</span>
+</span><span class='line'><span class="nb">cd</span> /home/user/pathto/weatherapi
+</span><span class='line'>wget -O http://api.wunderground.com/api/heregoeskey/forecast/lang:SP/q/Mexico/Monterrey.json
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This script works as follows: It goes to the path where you created the getWeather.sh  get’s the json from the API we are trying to bypass restrictions.</p>
+
+<p>Now instead of calling api.wunderground.com on your website call mywebsite.com/pathto/weatherapi/Monterrey.json this will give us the same file but locally bypassing the amounts of calls done to the api server.</p>
+
+<p>Now we need to refresh the file we made locally so for this we make a cronjob, to make a cronjob type</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>crontab -e
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This will open the cron editor, just add the following and we should be refreshing our local json every hour</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>0 * * * * /home/user/pathto/weatherapi/getWeather.sh
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The api call to the service will only be done every hour instead of every hit on your website. Now we are good to go!</p>
+
+<p>Good luck!
+<a href="https://twitter.com/acrogenesis">@acrogenesis</a></p>
+
+<p>Thanks <a href="http://www.reddit.com/user/Cixis">/u/Cixis</a> for some suggestions</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/how-to-upgrade-your-wordpress-blog-to-an-octopress-blog/">How-To Upgrade Your Wordpress Blog to an Octopress Blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-bypass-hotspot-logins/">How to Bypass Hotspot Logins on a Mac</a>
+      </li>
+    
+      <li class="post">
+        <a href="/top-aliases-and-functions-for-terminal/">My Top Aliases and Functions for Terminal</a>
+      </li>
+    
+      <li class="post">
+        <a href="/how-to-bypass-api-restrictions/">How to Bypass API Restrictions</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/acrogenesis">@acrogenesis</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'acrogenesis',
+            count: 5,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+<section class="googleplus googleplus-hidden">
+  <h1>
+    <a href="https://plus.google.com/106999223922545207134?rel=author">
+      <img src="http://www.google.com/images/icons/ui/gprofile_button-32.png" width="32" height="32">
+      Google+
+    </a>
+  </h1>
+</section>
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Adrián Rangel -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> and <a href="https://github.com/vladigleba/readify">Readify</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'acrogenseis';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

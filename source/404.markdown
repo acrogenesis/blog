@@ -1,0 +1,9 @@
+---
+layout: page
+title: "Page not found (404 Error)"
+comments: false
+sharing: false
+footer: false
+---
+
+Woops that link doesn't exist anymore, Sorry!

@@ -1,0 +1,8 @@
+<div class="highlight"><pre><span class="nb">alias </span><span class="nv">mac</span><span class="o">=</span><span class="s2">&quot;sudo ifconfig en0 ether&quot;</span> <span class="c">#specify a mac address, ex mac 11:22:33:44:55:66</span>
+<span class="nb">alias </span><span class="nv">mymac</span><span class="o">=</span><span class="s2">&quot;sudo ifconfig en0 ether 11:22:33:44:55:66&quot;</span> <span class="c">#revert back to my mac address, you have to check you mac address first.</span>
+<span class="nb">alias </span><span class="nv">chkmac</span><span class="o">=</span><span class="s2">&quot;ifconfig en0 |grep ether&quot;</span> <span class="c">#check the mac I currently use</span>
+<span class="nb">alias </span><span class="nv">ranmac</span><span class="o">=</span><span class="s2">&quot;openssl rand -hex 6 | sed &#39;s/\(..\)/\1:/g; s/.$//&#39;&quot;</span> <span class="c"># generate a random mac address</span>
+rmac<span class="o">(){</span>
+  sudo ifconfig en0 ether <span class="sb">`</span>ranmac<span class="sb">`</span>; <span class="c">#apply a random mac address</span>
+<span class="o">}</span>
+</pre></div>

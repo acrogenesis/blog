@@ -1,0 +1,9 @@
+<div class="highlight"><pre><span class="nb">alias </span><span class="nv">psh</span><span class="o">=</span>&amp;ldquo;git push origin&amp;rdquo; <span class="c">#push to origin specifying branch, ex. psh master</span>
+<span class="nb">alias </span><span class="nv">pll</span><span class="o">=</span>&amp;ldquo;git pull origin&amp;rdquo; <span class="c">#pull from origin specifying branch, ex. pll master</span>
+<span class="nb">alias </span><span class="nv">cmm</span><span class="o">=</span>&amp;ldquo;git commit -m&amp;rdquo; <span class="c">#commit</span>
+<span class="nb">alias </span><span class="nv">cmma</span><span class="o">=</span>&amp;ldquo;git commit -am&amp;rdquo; <span class="c">#commit and add modified files</span>
+rgc<span class="o">()</span> <span class="o">{</span>
+  git commit -m<span class="s2">&quot;&lt;code&gt;curl -s http://whatthecommit.com/index.txt&lt;/code&gt;&amp;ldquo; #get a random commit message from whatthecommit.com</span>
+<span class="s2">}</span>
+<span class="s2">function gc() { git clone &amp;rdquo;$1&quot;</span> &amp;amp;&amp;amp; <span class="nb">cd</span> &lt;code&gt;echo <span class="s2">&quot;&#39;$1&#39;&quot;</span> | cut -d/ -f2 | cut -d. -f1&lt;/code&gt;; <span class="o">}</span> <span class="c"># clones git repository and cd&amp;rsquo;s into it</span>
+</pre></div>
