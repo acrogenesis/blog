@@ -10,6 +10,10 @@ categories:
 - Terminal
 ---
 
+Moved to:
+# https://acrogenesis.com/top-aliases-and-functions-for-terminal/
+
+
 This are my top aliases for terminal, I've order them on how frequently I use them and separated by topics.
 
 To add this aliases and functions to your terminal simply run {% codeblock lang:bash %} vim ~/.bash_profile {% endcodeblock %} if it doesn't exit it will create a new one.

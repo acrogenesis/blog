@@ -10,6 +10,9 @@ categories:
 - How-To
 ---
 
+Moved to:
+# https://acrogenesis.com/how-to-bypass-api-restrictions/
+
 Don't you hate it when a free API has limits on the number of request you can do? I was hitting the wunderground.com and openexchangerates.org API's limits often. The problem was when we had a traffic spike. We didn't want to pay for premium the same way we don't want to pay extra bandwidth in case of a spontaneous traffic surge. So we came with the idea to cache it. Here's an easy way to ‘cache’ the API's JSON response.
 
 First of all let’s create a shell script (.sh) (I’ll be doing the example for the wunderground API) and add some code (I use VIM, the vim command will create the file)

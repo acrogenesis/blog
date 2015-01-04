@@ -10,6 +10,9 @@ categories:
 - How-To
 ---
 
+Moved to:
+# https://acrogenesis.com/how-to-bypass-hotspot-logins/
+
 If you are reading this you have probably faced a Hotspot at an airport, hotel, cafe etc. where the WiFi access was open but you faced a Hotspot login portal asking you to agree terms & conditions or pay a fee.
 
 Luckily there's an easy way around this which is based on how the portal allows some devices in and the other not.
